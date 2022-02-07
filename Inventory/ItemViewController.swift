@@ -30,6 +30,7 @@ class ItemViewController: UIViewController {
             status = .outOfStock
         }
         let newItemModel = ItemViewModel(with: Item(name: nameLabel.text ?? "", inStock: status))
+        
         viewModel.onAdd?(newItemModel)
         dismiss(animated: true, completion: nil)
         

@@ -20,6 +20,8 @@
 		5524809F27B1936D00B2C047 /* ItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524809E27B1936D00B2C047 /* ItemsViewModel.swift */; };
 		552480A127B1939700B2C047 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552480A027B1939700B2C047 /* ItemViewModel.swift */; };
 		552480A327B197CD00B2C047 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552480A227B197CD00B2C047 /* ItemViewController.swift */; };
+		552480A527B1D05D00B2C047 /* ItemsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552480A427B1D05D00B2C047 /* ItemsViewModelTests.swift */; };
+		552480A727B1D08B00B2C047 /* ItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552480A627B1D08B00B2C047 /* ItemViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		5524809E27B1936D00B2C047 /* ItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewModel.swift; sourceTree = "<group>"; };
 		552480A027B1939700B2C047 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		552480A227B197CD00B2C047 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
+		552480A427B1D05D00B2C047 /* ItemsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewModelTests.swift; sourceTree = "<group>"; };
+		552480A627B1D08B00B2C047 /* ItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				5524808327B192C200B2C047 /* InventoryTests.swift */,
+				552480A427B1D05D00B2C047 /* ItemsViewModelTests.swift */,
+				552480A627B1D08B00B2C047 /* ItemViewModelTests.swift */,
 			);
 			path = InventoryTests;
 			sourceTree = "<group>";
@@ -285,6 +291,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5524808427B192C200B2C047 /* InventoryTests.swift in Sources */,
+				552480A527B1D05D00B2C047 /* ItemsViewModelTests.swift in Sources */,
+				552480A727B1D08B00B2C047 /* ItemViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
