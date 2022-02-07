@@ -17,15 +17,7 @@ class ViewController: UIViewController {
     
     @IBAction func addPressed(_ sender: Any) {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "ItemView") as? ItemViewController else { return }
-        let newViewModel: ItemModel = ItemViewModel()
-        newViewModel.onAdd = { [weak self] in
-            self?.viewModel.addItem($0)
-        }
-        newViewModel.onDelete = { [weak self] in
-            self?.viewModel.deleteItem($0)
-        }
-
-        viewController.viewModel = newViewModel
+        viewController.viewModel = viewModel.newItem()
         present(viewController, animated: true, completion: nil)
     }
     
@@ -33,7 +25,14 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         itemsView = segue.destination as? ItemsTableViewController
+        viewModel.onSelection = onSelection(_:)
         itemsView?.viewModel = viewModel
+    }
+    
+    func onSelection(_ item: ItemModel) {
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "ItemView") as? ItemViewController else { return }
+        viewController.viewModel = item
+        present(viewController, animated: true, completion: nil)
     }
 }
 

@@ -25,6 +25,7 @@ typealias Items = [Item]
 // MARK: View Model
 
 typealias OnChangeHandler = () -> Void
+typealias OnSelectionHandler = (_ item: ItemModel) -> Void
 
 protocol ItemsViewModeling {
     func itemAtIndex(_ index: Int) -> ItemModel
@@ -32,9 +33,29 @@ protocol ItemsViewModeling {
     var onChange: OnChangeHandler? { get set }
     func addItem(_ item: ItemModel)
     func deleteItem(_ item: ItemModel)
+    func newItem() -> ItemModel
+    func onSelected(_ index: Int)
+    var onSelection: OnSelectionHandler? { get set }
 }
 
 class ItemsViewModel: ItemsViewModeling {
+    var onSelection: OnSelectionHandler?
+    
+    func onSelected(_ index: Int) {
+        onSelection?(itemAtIndex(index))
+    }
+    
+    func newItem() -> ItemModel {
+        let newViewModel: ItemModel = ItemViewModel()
+        newViewModel.onAdd = { [weak self] in
+            self?.addItem($0)
+        }
+        newViewModel.onDelete = { [weak self] in
+            self?.deleteItem($0)
+        }
+        return newViewModel
+    }
+    
     func itemAtIndex(_ index: Int) -> ItemModel {
         return itemViewModels[index]
     }

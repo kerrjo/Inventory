@@ -42,5 +42,8 @@ class ItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameLabel.text = viewModel.name
+        quantityLabel.text = viewModel.quantity
+        inStockStatusSwitch.isOn = viewModel.stockStatus
     }
 }

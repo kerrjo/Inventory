@@ -8,7 +8,6 @@
 import UIKit
 
 class ItemsTableViewController: UITableViewController {
-
     var viewModel: ItemsViewModeling?
     
     override func viewDidLoad() {
@@ -20,7 +19,9 @@ class ItemsTableViewController: UITableViewController {
             }
         }
     }
-    
+}
+
+extension ItemsTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int { 1 }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,5 +40,9 @@ class ItemsTableViewController: UITableViewController {
         }
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel?.onSelected(indexPath.row)
     }
 }
