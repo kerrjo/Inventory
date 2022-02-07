@@ -27,7 +27,6 @@ typealias Items = [Item]
 typealias OnChangeHandler = () -> Void
 
 protocol ItemsViewModeling {
-    //var items: Items  { get }
     func itemAtIndex(_ index: Int) -> ItemModel
     var count: Int { get }
     var onChange: OnChangeHandler? { get set }
@@ -48,17 +47,12 @@ class ItemsViewModel: ItemsViewModeling {
     }
     
     func deleteItem(_ item: ItemModel) {
-        if let index = itemViewModels.firstIndex(where: {
-            $0 === item
-        }) {
+        if let index = itemViewModels.firstIndex(where: { $0 === item }) {
             itemViewModels.remove(at: index)
             onChange?()
         }
     }
     
-    //var onChange: () -> Void = { }
-    
-    //var items: Items = []
     var itemViewModels: [ItemModel] = []
     var count: Int { itemViewModels.count }
 }

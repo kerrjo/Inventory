@@ -15,8 +15,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    //var newViewModel: ItemModel?
-    
     @IBAction func addPressed(_ sender: Any) {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "ItemView") as? ItemViewController else { return }
         let newViewModel: ItemModel = ItemViewModel()
