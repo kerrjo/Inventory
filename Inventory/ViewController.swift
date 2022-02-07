@@ -15,23 +15,20 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    //var newViewModel: ItemModel?
     
     @IBAction func addPressed(_ sender: Any) {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "ItemView") as? ItemViewController else { return }
-        let viewModel: ItemModel = ItemViewModel()
-        viewModel.onAdd? = { [weak self] in
+        let newViewModel: ItemModel = ItemViewModel()
+        newViewModel.onAdd = { [weak self] in
             self?.viewModel.addItem($0)
-            
         }
-        viewModel.onDelete? = { [weak self] in
+        newViewModel.onDelete = { [weak self] in
             self?.viewModel.deleteItem($0)
         }
 
-        viewController.viewModel = ItemViewModel()
-        
+        viewController.viewModel = newViewModel
         present(viewController, animated: true, completion: nil)
-        
-        
     }
     
     private var itemsView: ItemsTableViewController?
@@ -40,7 +37,5 @@ class ViewController: UIViewController {
         itemsView = segue.destination as? ItemsTableViewController
         itemsView?.viewModel = viewModel
     }
-
-
 }
 

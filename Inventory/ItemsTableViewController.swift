@@ -13,6 +13,7 @@ class ItemsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.dataSource = self
         viewModel?.onChange = { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
@@ -29,12 +30,16 @@ class ItemsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as UITableViewCell
         if let item = viewModel?.itemAtIndex(indexPath.row) {
             cell.textLabel?.text = item.name
+            if item.stockStatus {
+                cell.detailTextLabel?.text = "\(item.quantity)"
+            } else {
+                cell.detailTextLabel?.text = "out of stock"
+            }
         }
 
         return cell
     }
-
 }
