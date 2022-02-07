@@ -57,7 +57,14 @@ class ItemsViewModel: ItemsViewModeling {
     }
     
     func itemAtIndex(_ index: Int) -> ItemModel {
-        return itemViewModels[index]
+        let model = itemViewModels[index]
+        model.onAdd = { [weak self] in
+            self?.addItem($0)
+        }
+        model.onDelete = { [weak self] in
+            self?.deleteItem($0)
+        }
+        return model
     }
     
     var onChange: OnChangeHandler?
