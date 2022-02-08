@@ -7,27 +7,10 @@
 
 import Foundation
 
-
-// MARK: Data Model
-
-enum InStockStatus {
-    case inStock(Int)
-    case outOfStock
-}
-
-struct Item {
-    var name: String = ""
-    var inStock: InStockStatus = .outOfStock
-}
-
-typealias Items = [Item]
-
-// MARK: View Model
-
 typealias OnChangeHandler = () -> Void
 typealias OnSelectionHandler = (_ item: ItemModel) -> Void
 
-protocol ItemsViewModeling {
+protocol ItemsModel {
     func itemAtIndex(_ index: Int) -> ItemModel
     var count: Int { get }
     var onChange: OnChangeHandler? { get set }
@@ -38,7 +21,7 @@ protocol ItemsViewModeling {
     var onSelection: OnSelectionHandler? { get set }
 }
 
-class ItemsViewModel: ItemsViewModeling {
+class ItemsViewModel: ItemsModel {
     var onSelection: OnSelectionHandler?
     
     func onSelected(_ index: Int) {
@@ -46,7 +29,7 @@ class ItemsViewModel: ItemsViewModeling {
     }
     
     func newItem() -> ItemModel {
-        let newViewModel: ItemModel = ItemViewModel()
+        let newViewModel: ItemModel = ItemViewModel(new: true)
         newViewModel.onAdd = { [weak self] in
             self?.addItem($0)
         }
@@ -70,6 +53,7 @@ class ItemsViewModel: ItemsViewModeling {
     var onChange: OnChangeHandler?
     
     func addItem(_ item: ItemModel) {
+        item.isNew = false
         itemViewModels.append(item)
         onChange?()
     }

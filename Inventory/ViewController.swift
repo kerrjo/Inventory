@@ -9,11 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var viewModel: ItemsViewModeling = ItemsViewModel()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    var viewModel: ItemsModel = ItemsViewModel()
     
     private var itemsView: ItemsTableViewController?
     

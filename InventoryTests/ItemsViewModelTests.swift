@@ -17,13 +17,13 @@ class ItemsViewModelTests: XCTestCase {
     }
 
     func testNewItem() throws {
-        let sut: ItemsViewModeling = ItemsViewModel()
+        let sut: ItemsModel = ItemsViewModel()
         let newItem = sut.newItem()
         XCTAssertEqual(newItem.name,"")
     }
 
     func testOnChangeCalledAddItem() throws {
-        var sut: ItemsViewModeling = ItemsViewModel()
+        var sut: ItemsModel = ItemsViewModel()
         let expectation = expectation(description: "onchange")
         sut.onChange = {
             expectation.fulfill()
@@ -34,7 +34,7 @@ class ItemsViewModelTests: XCTestCase {
     }
     
     func testOnChangeCalledDeleteItem() throws {
-        var sut: ItemsViewModeling = ItemsViewModel()
+        var sut: ItemsModel = ItemsViewModel()
         let expectation = expectation(description: "onchange")
         expectation.expectedFulfillmentCount = 2 // one for add one for delete
         sut.onChange = {
@@ -48,7 +48,7 @@ class ItemsViewModelTests: XCTestCase {
     }
     
     func testOnSelectionCalledWhenSelected() throws {
-        var sut: ItemsViewModeling = ItemsViewModel()
+        var sut: ItemsModel = ItemsViewModel()
         let expectation = expectation(description: "")
         sut.onSelection = { _ in
             expectation.fulfill()
@@ -58,26 +58,14 @@ class ItemsViewModelTests: XCTestCase {
         sut.onSelected(0)
         waitForExpectations(timeout: 0.1)
     }
-    
-    
-//    func testOnDeleteCalledDeleteItem() throws {
-//        let sut: ItemsViewModeling = ItemsViewModel()
-//        let expectation = expectation(description: "onchange")
-//        let mock = MockItemModel(delete: { _ in
-//            expectation.fulfill()
-//        })
-//        sut.addItem(mock)
-//        let item = sut.itemAtIndex(0)
-//        sut.deleteItem(item)
-//        waitForExpectations(timeout: 0.1)
-//    }
-
-
 }
 
 //typealias ItemChangeHandler =  (ItemModel) -> ()
 
 class MockItemModel: ItemModel {
+    var isNew: Bool = true
+    func validQuantity(_ amountText: String?) -> Int? { return nil }
+    
     var name: String = "test"
     var quantity: String = "0"
     var stockStatus: Bool = false
