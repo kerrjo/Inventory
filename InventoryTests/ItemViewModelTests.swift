@@ -45,7 +45,6 @@ class ItemViewModelTests: XCTestCase {
         XCTAssertEqual(sut.validQuantity("1")!,1)
     }
 
-    
     func testValidQuantity_02_isValid() throws {
         let sut: ItemModel = ItemViewModel()
         XCTAssertNotNil(sut.validQuantity("02"))
